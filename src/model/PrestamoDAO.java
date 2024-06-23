@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -12,19 +13,19 @@ public class PrestamoDAO extends DatabaseConnection{
 
     private Connection conexion;
 
-    public PrestamoDAO(Connection conexion) {
-        this.conexion = conexion;
+    public PrestamoDAO() {
     }
 
     // Crear los metodos CRUD: crear, leer, actualizar y eliminar
     public boolean CrearPrestamo (Prestamo prestamo) {
-    	PreparedStatement sentencia = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "INSERT INTO prestamos (libro_id, usuario_id, fecha_prestamo, fecha_devolucion) VALUES (?,?,?,?)";
     	
     	try {
-    		sentencia = connection.prepareStatement(sql);
+    		this.conexion = getConnection();    	
+        	String sql = "INSERT INTO prestamos (libro_id, usuario_id, fecha_prestamo, fecha_devolucion) VALUES (?,?,?,?)";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		sentencia.setInt(1, prestamo.getLibro_id());
     		sentencia.setInt(2, prestamo.getUsuario_id());
     		sentencia.setString(3, prestamo.getFecha_prestamo());
@@ -37,7 +38,7 @@ public class PrestamoDAO extends DatabaseConnection{
     		return false;
     	} finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
@@ -45,14 +46,15 @@ public class PrestamoDAO extends DatabaseConnection{
     }
     
     public boolean LeerPrestamo (Prestamo prestamo, DefaultTableModel modelo) {
-    	PreparedStatement sentencia = null;
-    	ResultSet resultado = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "SELECT * FROM prestamos";
     	
     	try {
-    		sentencia = connection.prepareStatement(sql);
+        	this.conexion = getConnection();
+        	String sql = "SELECT * FROM prestamos";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+        	ResultSet resultado = null;
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		resultado = sentencia.executeQuery();
     		
     		//establece el numero de filas en 0
@@ -78,7 +80,7 @@ public class PrestamoDAO extends DatabaseConnection{
     	
     	}finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
@@ -88,13 +90,13 @@ public class PrestamoDAO extends DatabaseConnection{
     
     public boolean ModificarPrestamo (Prestamo prestamo) {
     	
-    	PreparedStatement sentencia = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "UPDATE prestamos SET libro_id = ?, usuario_id = ?, fecha_prestamo = ?, fecha_devolucion = ? WHERE id = ?";
-    	
     	try {
-    		sentencia = connection.prepareStatement(sql);
+    	 	this.conexion = getConnection();
+        	String sql = "UPDATE prestamos SET libro_id = ?, usuario_id = ?, fecha_prestamo = ?, fecha_devolucion = ? WHERE id = ?";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		
     		sentencia.setInt(1, prestamo.getLibro_id());
     		sentencia.setInt(2, prestamo.getUsuario_id());
@@ -111,7 +113,7 @@ public class PrestamoDAO extends DatabaseConnection{
     	
     	} finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
@@ -121,13 +123,13 @@ public class PrestamoDAO extends DatabaseConnection{
 
     public boolean EliminarPrestamo (Prestamo prestamo) {
     	
-    	PreparedStatement sentencia = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "DELETE FROM prestamos WHERE id = ?";
-    	
     	try {
-    		sentencia = connection.prepareStatement(sql);
+    		this.conexion = getConnection();
+        	String sql = "DELETE FROM prestamos WHERE id = ?";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		sentencia.setInt(1, prestamo.getId());
     		
     		sentencia.execute();
@@ -139,12 +141,45 @@ public class PrestamoDAO extends DatabaseConnection{
     	
     	} finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
     	}
     }	
   
-    
+    //Metodo adicional para traer el contenido de un libro  
+    // y luego modificar ese mismo libro en una nueva ventana
+     
+     public void TraerContenidoPrestamo (Prestamo prestamo){
+     	try {
+             this.conexion = getConnection();
+             String sql = "SELECT * FROM prestamos WHERE id = ?";
+             
+             PreparedStatement sentencia = conexion.prepareStatement(sql);
+             sentencia.setInt(1, prestamo.getId());
+             ResultSet resultado = sentencia.executeQuery();
+
+             if(resultado.next()) {
+            	 prestamo.setId(Integer.parseInt(resultado.getString("id")));
+            	 prestamo.setLibro_id(Integer.parseInt(resultado.getString("Libro ID")));
+            	 prestamo.setUsuario_id(Integer.parseInt(resultado.getString("Usuario ID")));
+            	 prestamo.setFecha_prestamo(resultado.getString("Fecha prestamo"));
+            	 prestamo.setFecha_devolucion(resultado.getString("Fecha devolucion"));
+            	 
+             }
+             else {
+                 JOptionPane.showMessageDialog(null, "¡no existe un registro con ese id, intentalo de nuevo!");
+             }
+             // Cierra el statement y result
+             sentencia.close();
+             resultado.close();
+
+         } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,
+                     "Ha ocurrido un problema al intentar mostrar los registros: " + e.getMessage());
+         } finally {
+             closeConnection();
+         }
+ }   
 }

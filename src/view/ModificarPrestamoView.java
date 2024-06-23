@@ -17,14 +17,13 @@ public class ModificarPrestamoView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	public JTextField textModificarTituloLibro;
-	public JTextField textModificarAutorLibro;
-	public JTextField textModificarEditorialLibro;
-	public JTextField textModificarAnioPublicacionLibro;
-	public JTextField textModificarISBNLibro;
-	public JButton btnGuardarModificacionLibro;
-	public JTextField textIDBuscarLibro;
-	public JButton btnBuscarIDLibro;
+	public JTextField textModificarLibroID;
+	public JTextField textModificarUsuarioID;
+	public JTextField textModificarFechaInicioPrestamo;
+	public JTextField textModificarFechaDevolucionPrestamo;
+	public JButton btnGuardarModificacionPrestamo;
+	public JTextField textIDBuscarPrestamo;
+	public JButton btnBuscarIDPrestamo;
 
 	/**
 	 * Create the frame.
@@ -32,7 +31,7 @@ public class ModificarPrestamoView extends JFrame {
 	public ModificarPrestamoView() {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 449, 420);
+		setBounds(100, 100, 449, 368);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -45,67 +44,58 @@ public class ModificarPrestamoView extends JFrame {
 		lblParaCrearEl.setBounds(102, 11, 241, 47);
 		contentPane.add(lblParaCrearEl);
 		
-		JLabel lblNewLabel_1 = new JLabel("Titulo:");
+		JLabel lblNewLabel_1 = new JLabel("Libro ID:");
 		lblNewLabel_1.setBounds(10, 120, 225, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		textModificarTituloLibro = new JTextField();
-		textModificarTituloLibro.setColumns(10);
-		textModificarTituloLibro.setBounds(10, 134, 304, 20);
-		contentPane.add(textModificarTituloLibro);
+		textModificarLibroID = new JTextField();
+		textModificarLibroID.setColumns(10);
+		textModificarLibroID.setBounds(10, 134, 304, 20);
+		contentPane.add(textModificarLibroID);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Autor:");
+		JLabel lblNewLabel_1_1 = new JLabel("Usuario ID:");
 		lblNewLabel_1_1.setBounds(10, 172, 225, 14);
 		contentPane.add(lblNewLabel_1_1);
 		
-		textModificarAutorLibro = new JTextField();
-		textModificarAutorLibro.setColumns(10);
-		textModificarAutorLibro.setBounds(10, 185, 304, 20);
-		contentPane.add(textModificarAutorLibro);
+		textModificarUsuarioID = new JTextField();
+		textModificarUsuarioID.setColumns(10);
+		textModificarUsuarioID.setBounds(10, 185, 304, 20);
+		contentPane.add(textModificarUsuarioID);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Editorial:");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Fecha inicio del prestamo:");
 		lblNewLabel_1_1_1.setBounds(10, 228, 225, 14);
 		contentPane.add(lblNewLabel_1_1_1);
 		
-		textModificarEditorialLibro = new JTextField();
-		textModificarEditorialLibro.setColumns(10);
-		textModificarEditorialLibro.setBounds(10, 241, 304, 20);
-		contentPane.add(textModificarEditorialLibro);
+		textModificarFechaInicioPrestamo = new JTextField();
+		textModificarFechaInicioPrestamo.setColumns(10);
+		textModificarFechaInicioPrestamo.setBounds(10, 241, 304, 20);
+		contentPane.add(textModificarFechaInicioPrestamo);
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Año de publicacion del libro (YYYY-MM-DD):");
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Fecha devolucion del prestamo:");
 		lblNewLabel_1_1_1_1.setBounds(10, 281, 304, 14);
 		contentPane.add(lblNewLabel_1_1_1_1);
 		
-		textModificarAnioPublicacionLibro = new JTextField();
-		textModificarAnioPublicacionLibro.setColumns(10);
-		textModificarAnioPublicacionLibro.setBounds(10, 293, 304, 20);
-		contentPane.add(textModificarAnioPublicacionLibro);
+		textModificarFechaDevolucionPrestamo = new JTextField();
+		textModificarFechaDevolucionPrestamo.setColumns(10);
+		textModificarFechaDevolucionPrestamo.setBounds(10, 293, 304, 20);
+		contentPane.add(textModificarFechaDevolucionPrestamo);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("ISBN:");
-		lblNewLabel_1_2.setBounds(10, 324, 225, 14);
-		contentPane.add(lblNewLabel_1_2);
+		btnGuardarModificacionPrestamo = new JButton("MODIFICAR");
+		btnGuardarModificacionPrestamo.setBounds(324, 157, 100, 77);
+		contentPane.add(btnGuardarModificacionPrestamo);
 		
-		textModificarISBNLibro = new JTextField();
-		textModificarISBNLibro.setColumns(10);
-		textModificarISBNLibro.setBounds(10, 338, 304, 20);
-		contentPane.add(textModificarISBNLibro);
-		
-		btnGuardarModificacionLibro = new JButton("MODIFICAR");
-		btnGuardarModificacionLibro.setBounds(324, 184, 100, 77);
-		contentPane.add(btnGuardarModificacionLibro);
-		
-		JLabel lblNewLabel_1_3 = new JLabel("Ingresa el id del libro que desea modificar:");
-		lblNewLabel_1_3.setBounds(10, 75, 225, 14);
+		JLabel lblNewLabel_1_3 = new JLabel("Ingresa el id del prestamo que desea modificar:");
+		lblNewLabel_1_3.setBounds(10, 75, 271, 14);
 		contentPane.add(lblNewLabel_1_3);
 		
-		textIDBuscarLibro = new JTextField();
-		textIDBuscarLibro.setColumns(10);
-		textIDBuscarLibro.setBounds(10, 89, 304, 20);
-		contentPane.add(textIDBuscarLibro);
+		textIDBuscarPrestamo = new JTextField();
+		textIDBuscarPrestamo.setColumns(10);
+		textIDBuscarPrestamo.setBounds(10, 89, 304, 20);
+		contentPane.add(textIDBuscarPrestamo);
 		
-		btnBuscarIDLibro = new JButton("BUSCAR");
-		btnBuscarIDLibro.setBounds(324, 88, 100, 23);
-		contentPane.add(btnBuscarIDLibro);
+		btnBuscarIDPrestamo = new JButton("BUSCAR");
+		btnBuscarIDPrestamo.setBounds(324, 88, 100, 23);
+		contentPane.add(btnBuscarIDPrestamo);
 	
 	}
 

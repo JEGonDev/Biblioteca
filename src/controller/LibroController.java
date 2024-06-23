@@ -44,22 +44,26 @@ public class LibroController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // Lógica de manejo de eventos
 
+    	//Esto lo que hace es mostrar la tabla en el formulario
         if (e.getSource() == vista.btnMostrarLibros) {
             modelo.LeerLibro(vista.model);
         }
 
+        //Esto lo que hace es que al oprimir el boton de eliminar libro se realize la el metodo crud elininar
         if (e.getSource() == vista.btnEliminarLibro) {
             int idLibro = Integer.parseInt(vista.textCodigoEliminarLibro.getText());
             libro.setId(idLibro);
             modelo.EliminarLibro(libro);
             JOptionPane.showMessageDialog(null, "Libro eliminado");
         }
-
+        
+        //Esto lo que hace es que al oprimir el boton crear libro se muestre el formulario en cuestion
         if (e.getSource() == vista.btnCrearLibro) {
             crear.setVisible(true);
             vista.dispose();
         }
 
+        //Esto permite que al oprimir el boton se guarden los datos suministrados
         if (e.getSource() == crear.btnCrearNuevoLibro) {
             // Obtener valores de la ventana de creación
             String titulo = crear.textCrearTituloLibro.getText();
@@ -82,12 +86,13 @@ public class LibroController implements ActionListener {
             JOptionPane.showMessageDialog(null, "Libro creado exitosamente");
         }
 
+        //Esto permite que al oprimir el boton se abra el formulario en cuestion
         if (e.getSource() == vista.btnModificarLibro) {
         	modificar.setVisible(true);
         	vista.dispose();
         }
         
-        
+        	//Esto trae el contenido del libro que el usuario propocione en los campos de texto
             if (e.getSource() == modificar.btnBuscarIDLibro) {
                 int id = Integer.parseInt(modificar.textIDBuscarLibro.getText());
                 libro.setId(id);
@@ -104,6 +109,7 @@ public class LibroController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Libro cargado para modificación.");
             }
 
+            //Esto guarda las modificaciones del usuario
             if (e.getSource() == modificar.btnGuardarModificacionLibro) {
                 // Obtener valores modificados del formulario
                 String titulo = modificar.textModificarTituloLibro.getText();

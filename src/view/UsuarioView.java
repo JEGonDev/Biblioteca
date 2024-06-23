@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -17,23 +18,23 @@ import javax.swing.JTextField;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-public class UsuarioView extends JFrame implements ActionListener{
+public class UsuarioView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textCodigoEliminarUsuario;
+	public JTextField textCodigoEliminarUsuario;
 	private JTable table;
 	public JButton btnMostrarUsuarios;
 	public JButton btnCrearNuevoUsuario;
 	public JButton btnEliminarUsuario;
 	public JButton btnModificarUsuario;
-	private Connection conexion;
+	public DefaultTableModel model;
+
 	
 	/**
 	 * Create the frame.
-	 * @param conexion 
 	 */
-	public UsuarioView(Connection conexion) {
+	public UsuarioView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 596, 420);
 		contentPane = new JPanel();
@@ -80,12 +81,15 @@ public class UsuarioView extends JFrame implements ActionListener{
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		model = new DefaultTableModel();
 		
+		model.addColumn("ID");
+		model.addColumn("Nombre");
+		model.addColumn("EMAIL");
+		model.addColumn("Telefono");
+		
+		table.setModel(model);
+		
+		scrollPane.setViewportView(table);
 	}
 }

@@ -9,7 +9,6 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -18,7 +17,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class PrestamoView extends JFrame implements ActionListener{
+public class PrestamoView extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -28,13 +27,13 @@ public class PrestamoView extends JFrame implements ActionListener{
 	public JButton btnCrearNuevoPrestamo;
 	public JButton btnEliminarPrestamo;
 	public JButton btnModificarPrestamo;
-	private Connection conexion;
+	public DefaultTableModel model;
 
 
 	/**
 	 * Create the frame.
 	 */
-	public PrestamoView(Connection conexion) {
+	public PrestamoView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 595, 341);
 		contentPane = new JPanel();
@@ -81,39 +80,15 @@ public class PrestamoView extends JFrame implements ActionListener{
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-				{null, null, null, null, null},
-			},
-			new String[] {
-				"ID", "Libro ID", "Usuario ID", "Fecha prestamo", "Fecha devolución"
-			}
-		));
-		scrollPane.setViewportView(table);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		model = new DefaultTableModel();
+		model.addColumn("ID");
+		model.addColumn("Libro ID");
+		model.addColumn("Usuario ID");
+		model.addColumn("Fecha Prestamo");
+		model.addColumn("Fecha Devolucion");
 		
+		table.setModel(model);
+	
+		scrollPane.setViewportView(table);
 	}
 }

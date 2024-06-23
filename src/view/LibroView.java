@@ -93,9 +93,4 @@ public class LibroView extends JFrame{
 		table.setModel(model);
 		scrollPane.setViewportView(table);
 	}
-	
-	public static void main(String[] args) {
-		LibroView libroView = new LibroView();
-		libroView.setVisible(true);
-	}
 }

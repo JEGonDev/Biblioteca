@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class UsuarioDAO extends DatabaseConnection{
@@ -11,19 +12,19 @@ public class UsuarioDAO extends DatabaseConnection{
     private Connection conexion;
 
     public UsuarioDAO(Connection conexion) {
-        this.conexion = conexion;
     }
 
     // Crear los metodos CRUD: crear, leer, actualizar y eliminar
     //Crear
     public boolean CrearUsuario (Usuario usuario) {
-    	PreparedStatement sentencia = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "INSERT INTO usuarios (nombre, email, telefono) VALUES (?,?,?)";
     	
     	try {
-    		sentencia = connection.prepareStatement(sql);
+    	  	this.conexion = getConnection();
+        	String sql = "INSERT INTO usuarios (nombre, email, telefono) VALUES (?,?,?)";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		sentencia.setString(1, usuario.getNombre());
     		sentencia.setString(2, usuario.getEmail());
     		sentencia.setString(3, usuario.getTelefono());
@@ -35,7 +36,7 @@ public class UsuarioDAO extends DatabaseConnection{
     		return false;
     	} finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
@@ -43,14 +44,15 @@ public class UsuarioDAO extends DatabaseConnection{
     }
     
     public boolean LeerUsuario (Usuario usuario, DefaultTableModel modelo) {
-    	PreparedStatement sentencia = null;
-    	ResultSet resultado = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "SELECT * FROM usuarios";
     	
     	try {
-    		sentencia = connection.prepareStatement(sql);
+    		this.conexion = getConnection();
+        	String sql = "SELECT * FROM usuarios";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+        	ResultSet resultado = null;
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		resultado = sentencia.executeQuery();
     		
     		//establece el numero de filas en 0
@@ -75,7 +77,7 @@ public class UsuarioDAO extends DatabaseConnection{
     	
     	}finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
@@ -85,13 +87,13 @@ public class UsuarioDAO extends DatabaseConnection{
     
     public boolean ModificarUsuario (Usuario usuario) {
     	
-    	PreparedStatement sentencia = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "UPDATE usuarios SET nombre = ?, email = ?, telefono = ? WHERE id = ?";
-    	
     	try {
-    		sentencia = connection.prepareStatement(sql);
+    		this.conexion = getConnection();
+        	String sql = "UPDATE usuarios SET nombre = ?, email = ?, telefono = ? WHERE id = ?";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		
     		sentencia.setString(1, usuario.getNombre());
     		sentencia.setString(2, usuario.getEmail());
@@ -107,7 +109,7 @@ public class UsuarioDAO extends DatabaseConnection{
     	
     	} finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
@@ -116,14 +118,14 @@ public class UsuarioDAO extends DatabaseConnection{
     
 
     public boolean EliminarUsuario (Usuario usuario) {
-    	
-    	PreparedStatement sentencia = null;
-    	Connection connection = getConnection();
-    	
-    	String sql = "DELETE FROM usuarios WHERE id = ?";
-    	
+    
     	try {
-    		sentencia = connection.prepareStatement(sql);
+    		this.conexion = getConnection();
+        	String sql = "DELETE FROM usuarios WHERE id = ?";
+
+        	PreparedStatement sentencia = conexion.prepareStatement(sql);
+    		
+    		sentencia = conexion.prepareStatement(sql);
     		sentencia.setInt(1, usuario.getId());
     		
     		sentencia.execute();
@@ -135,11 +137,43 @@ public class UsuarioDAO extends DatabaseConnection{
     	
     	} finally {
     		try {
-    			connection.close();
+    			conexion.close();
     		} catch (SQLException e) {
     			System.err.println("Error al cerrar la conexion: " +e.getMessage());
     		}
     	}
     }	
-  
+    //Metodo adicional para traer el contenido de un libro  
+    // y luego modificar ese mismo libro en una nueva ventana
+     
+     public void TraerContenidoUsuario (Usuario usuario){
+     	try {
+             this.conexion = getConnection();
+             String sql = "SELECT * FROM usuarios WHERE id = ?";
+             
+             PreparedStatement sentencia = conexion.prepareStatement(sql);
+             sentencia.setInt(1, usuario.getId());
+             ResultSet resultado = sentencia.executeQuery();
+
+             if(resultado.next()) {
+            	 usuario.setId(Integer.parseInt(resultado.getString("id")));
+            	 usuario.setNombre(resultado.getString("Nombre"));
+            	 usuario.setEmail(resultado.getString("Email"));
+            	 usuario.setTelefono(resultado.getString("Telefono"));
+            	 
+             }
+             else {
+                 JOptionPane.showMessageDialog(null, "¡no existe un registro con ese id, intentalo de nuevo!");
+             }
+             // Cierra el statement y result
+             sentencia.close();
+             resultado.close();
+
+         } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null,
+                     "Ha ocurrido un problema al intentar mostrar los registros: " + e.getMessage());
+         } finally {
+             closeConnection();
+         }
+ }   
 }
