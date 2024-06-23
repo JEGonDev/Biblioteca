@@ -1,8 +1,6 @@
 package model;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,7 +14,7 @@ public class UsuarioDAO extends DatabaseConnection{
 
     // Crear los metodos CRUD: crear, leer, actualizar y eliminar
     //Crear
-    public boolean CrearUsuario (Usuario usuario) {
+    public void CrearUsuario (Usuario usuario) {
     	
     	try {
     	  	this.conexion = getConnection();
@@ -29,21 +27,18 @@ public class UsuarioDAO extends DatabaseConnection{
     		sentencia.setString(2, usuario.getEmail());
     		sentencia.setString(3, usuario.getTelefono());
     		sentencia.execute();
-    		return true;
+    		JOptionPane.showMessageDialog(null, "Usuario creado exitosamente");
     		
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println(e);
-    		return false;
+    		JOptionPane.showMessageDialog(null, "No se pudo crear el usuario: "+e.getMessage());
+    		
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
-    public boolean LeerUsuario (Usuario usuario, DefaultTableModel modelo) {
+    public void LeerUsuario (Usuario usuario, DefaultTableModel modelo) {
     	
     	try {
     		this.conexion = getConnection();
@@ -69,23 +64,19 @@ public class UsuarioDAO extends DatabaseConnection{
     			//Se agrega la fila creada al DefaultTableModel
     			modelo.addRow(fila);
     		}
-    		return true;
+    		sentencia.close();
+    		resultado.close();
     		
     	} catch (SQLException e) {
-    		System.err.println(e);
-    		return false;
+    		JOptionPane.showMessageDialog(null, "No se pudo mostrar la tabla de usuarios: " + e.getMessage());
     	
     	}finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
     
-    public boolean ModificarUsuario (Usuario usuario) {
+    public void ModificarUsuario (Usuario usuario) {
     	
     	try {
     		this.conexion = getConnection();
@@ -101,23 +92,18 @@ public class UsuarioDAO extends DatabaseConnection{
     		sentencia.setInt(4, usuario.getId());
     		
     		sentencia.execute();
-    		return true;
+    		JOptionPane.showMessageDialog(null, "Usuario actualizado exitosamente");
     		
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println("Error al actualizar: " + e.getMessage());
-    		return false;
+    		JOptionPane.showMessageDialog(null, "No se pudo realizar la actualizacion: " + e.getMessage());
     	
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
-
-    public boolean EliminarUsuario (Usuario usuario) {
+    public void EliminarUsuario (Usuario usuario) {
     
     	try {
     		this.conexion = getConnection();
@@ -129,18 +115,14 @@ public class UsuarioDAO extends DatabaseConnection{
     		sentencia.setInt(1, usuario.getId());
     		
     		sentencia.execute();
-    		return true;
+    		JOptionPane.showMessageDialog(null, "Se elimino el usuario exitosamente");
     		
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println("Error al actualizar: " + e.getMessage());
-    		return false;
+    		JOptionPane.showMessageDialog(null, "No se pudo eliminar el usuario: " +e.getMessage() );
     	
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }	
     //Metodo adicional para traer el contenido de un libro  

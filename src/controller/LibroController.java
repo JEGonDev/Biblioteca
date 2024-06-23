@@ -2,7 +2,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import model.Libro;
 import model.LibroDAO;
 import view.CrearLibroView;
@@ -30,14 +29,12 @@ public class LibroController implements ActionListener {
         
         // Asignar listeners a los botones de la vista de creación
         this.crear.btnCrearNuevoLibro.addActionListener(this);
-
-        // Verificar que modificar no sea null antes de asignar listeners
-        if (this.modificar != null) {
-            this.modificar.btnBuscarIDLibro.addActionListener(this);
-            this.modificar.btnGuardarModificacionLibro.addActionListener(this);
-        } else {
-            System.out.println("Warning: 'modificar' es null y no se han podido asignar ActionListeners.");
-        }
+        this.crear.btnVolverCrearLibro.addActionListener(this);
+        
+        // Asignar listeners a los botones de la vista modificar
+        this.modificar.btnVolverModificarLibro.addActionListener(this);
+        this.modificar.btnBuscarIDLibro.addActionListener(this);
+        this.modificar.btnGuardarModificacionLibro.addActionListener(this);
     }
 
     @Override
@@ -45,22 +42,27 @@ public class LibroController implements ActionListener {
         // Lógica de manejo de eventos
 
     	//Esto lo que hace es mostrar la tabla en el formulario
-        if (e.getSource() == vista.btnMostrarLibros) {
-            modelo.LeerLibro(vista.model);
-        }
+    	if (e.getSource() == vista.btnMostrarLibros) {
+    	    modelo.mostrarLibro(vista.model); // Lee y actualiza la tabla
+    	    
+    	}
 
-        //Esto lo que hace es que al oprimir el boton de eliminar libro se realize la el metodo crud elininar
-        if (e.getSource() == vista.btnEliminarLibro) {
-            int idLibro = Integer.parseInt(vista.textCodigoEliminarLibro.getText());
-            libro.setId(idLibro);
-            modelo.EliminarLibro(libro);
-            JOptionPane.showMessageDialog(null, "Libro eliminado");
-        }
-        
+    	if (e.getSource() == vista.btnEliminarLibro) {
+    	    int idLibro = Integer.parseInt(vista.textCodigoEliminarLibro.getText());
+    	    libro.setId(idLibro);
+    	    modelo.eliminarLibro(libro);
+    	    vista.textCodigoEliminarLibro.setText(""); 	        
+    	    } 
+    	
         //Esto lo que hace es que al oprimir el boton crear libro se muestre el formulario en cuestion
         if (e.getSource() == vista.btnCrearLibro) {
             crear.setVisible(true);
             vista.dispose();
+        }
+        
+        if (e.getSource() == crear.btnVolverCrearLibro) {
+        	vista.setVisible(true);
+        	crear.setVisible(false);
         }
 
         //Esto permite que al oprimir el boton se guarden los datos suministrados
@@ -81,9 +83,9 @@ public class LibroController implements ActionListener {
             libro.setIsbn(isbn);
 
             // Crear el libro en el modelo
-            modelo.CrearLibro(libro);
+            modelo.crearLibro(libro);
 
-            JOptionPane.showMessageDialog(null, "Libro creado exitosamente");
+            
         }
 
         //Esto permite que al oprimir el boton se abra el formulario en cuestion
@@ -92,11 +94,16 @@ public class LibroController implements ActionListener {
         	vista.dispose();
         }
         
+        if (e.getSource() == modificar.btnVolverModificarLibro) {
+        	vista.setVisible(true);
+        	modificar.setVisible(false);
+        }
+        
         	//Esto trae el contenido del libro que el usuario propocione en los campos de texto
             if (e.getSource() == modificar.btnBuscarIDLibro) {
                 int id = Integer.parseInt(modificar.textIDBuscarLibro.getText());
                 libro.setId(id);
-                modelo.TraerContenidoLibro(libro);
+                modelo.traerContenidoLibro(libro);
 
                 // Asignar valores obtenidos al formulario de modificación
                 modificar.textIDBuscarLibro.setText(String.valueOf(libro.getId()));
@@ -106,7 +113,7 @@ public class LibroController implements ActionListener {
                 modificar.textModificarAnioPublicacionLibro.setText(String.valueOf(libro.getAnioPublicacion()));
                 modificar.textModificarISBNLibro.setText(libro.getIsbn());
 
-                JOptionPane.showMessageDialog(null, "Libro cargado para modificación.");
+                
             }
 
             //Esto guarda las modificaciones del usuario
@@ -119,7 +126,7 @@ public class LibroController implements ActionListener {
                 int anioPublicacion = Integer.parseInt(textoAnio);
                 String isbn = modificar.textModificarISBNLibro.getText();
 
-                // Actualizar el objeto libro
+                // Actualizar la base de datos en el campo id
                 libro.setTitulo(titulo);
                 libro.setAutor(autor);
                 libro.setEditorial(editorial);
@@ -127,9 +134,9 @@ public class LibroController implements ActionListener {
                 libro.setIsbn(isbn);
 
                 // Guardar cambios en el modelo
-                modelo.ModificarLibro(libro);
+                modelo.modificarLibro(libro);
 
-                JOptionPane.showMessageDialog(null, "Libro modificado exitosamente");
+                
             }
         }
     }

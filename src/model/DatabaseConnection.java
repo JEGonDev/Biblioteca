@@ -1,39 +1,43 @@
 package model;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.DriverManager;
 
 public class DatabaseConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/biblioteca";
-    private static final String USER = "root";
-    private static final String PASSWORD = "123456789";
+       private static final String URL = "jdbc:mysql://localhost:3306/biblioteca";
+        private static final String USER = "root";
+        private static final String PASSWORD = "123456789";
 
-    private static Connection connection = null;
+        private static Connection conexion;
 
-    // Método para obtener la conexión
-    public static Connection getConnection() {
-        if (connection == null) {
-            try {
-                connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                System.out.println("Conexión a la base de datos establecida.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Error al conectar a la base de datos: " + e.getMessage());
+        public DatabaseConnection() {} 
+
+        public static Connection getConnection() {
+            if (conexion == null) {
+                try {
+                    conexion = DriverManager.getConnection(URL, USER, PASSWORD);
+
+                } catch (SQLException e) {
+                    // manejo de excepciones
+                    throw new RuntimeException("Error al conectar a la base de datos", e);
+                }
+            }
+            return conexion;
+        }
+
+        public static void closeConnection() {
+            if (conexion != null) {
+                try {
+                    conexion.close();
+
+                } catch (SQLException e) {
+                    // manejo de excepciones
+                    throw new RuntimeException("Error al cerrar la conexiÃ³n a la base de datos", e);
+                } finally {
+                    conexion = null; // aqui se limpia la conexion para evitar reutilizacion incorrecta
+                }
             }
         }
-        return connection;
-    }
 
-    // Método para cerrar la conexión
-    public static void closeConnection() {
-        if (connection != null) {
-            try {
-                connection.close();
-                System.out.println("Conexión a la base de datos cerrada.");
-            } catch (SQLException e) {
-                e.printStackTrace();
-                System.out.println("Error al cerrar la conexión a la base de datos: " + e.getMessage());
-            }
-        }
-    }
 }

@@ -1,8 +1,6 @@
 package model;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,7 +15,7 @@ public class PrestamoDAO extends DatabaseConnection{
     }
 
     // Crear los metodos CRUD: crear, leer, actualizar y eliminar
-    public boolean CrearPrestamo (Prestamo prestamo) {
+    public void CrearPrestamo (Prestamo prestamo) {
     	
     	try {
     		this.conexion = getConnection();    	
@@ -31,21 +29,18 @@ public class PrestamoDAO extends DatabaseConnection{
     		sentencia.setString(3, prestamo.getFecha_prestamo());
     		sentencia.setString(4, prestamo.getFecha_devolucion());
     		sentencia.execute();
-    		return true;
     		
+    		JOptionPane.showMessageDialog(null, "Prestamo creado exitosamente");
+    		
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println(e);
-    		return false;
+    		JOptionPane.showMessageDialog(null, "No se pudo crear el prestamo: " + e.getMessage());
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
-    public boolean LeerPrestamo (Prestamo prestamo, DefaultTableModel modelo) {
+    public void LeerPrestamo (Prestamo prestamo, DefaultTableModel modelo) {
     	
     	try {
         	this.conexion = getConnection();
@@ -72,23 +67,17 @@ public class PrestamoDAO extends DatabaseConnection{
     			//Se agrega la fila creada al DefaultTableModel
     			modelo.addRow(fila);
     		}
-    		return true;
+    		sentencia.close();
+    		resultado.close();
     		
     	} catch (SQLException e) {
-    		System.err.println(e);
-    		return false;
-    	
+    		JOptionPane.showMessageDialog(null, "No se pueden obtener la tabla de la base de datos: " +e.getMessage());
     	}finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
-    
-    public boolean ModificarPrestamo (Prestamo prestamo) {
+    public void ModificarPrestamo (Prestamo prestamo) {
     	
     	try {
     	 	this.conexion = getConnection();
@@ -105,23 +94,17 @@ public class PrestamoDAO extends DatabaseConnection{
     		sentencia.setInt(5 ,prestamo.getId());
     		
     		sentencia.execute();
-    		return true;
+    		JOptionPane.showMessageDialog(null, "Prestamo actualizado exitosamente");
     		
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println("Error al actualizar: " + e.getMessage());
-    		return false;
-    	
+    		JOptionPane.showMessageDialog(null,"No se pudo actualizar el prestamo: " +e.getMessage());
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
-
-    public boolean EliminarPrestamo (Prestamo prestamo) {
+    public void EliminarPrestamo (Prestamo prestamo) {
     	
     	try {
     		this.conexion = getConnection();
@@ -133,18 +116,13 @@ public class PrestamoDAO extends DatabaseConnection{
     		sentencia.setInt(1, prestamo.getId());
     		
     		sentencia.execute();
-    		return true;
+    		JOptionPane.showMessageDialog(null, "Prestamo eliminado exitosamente");
     		
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println("Error al actualizar: " + e.getMessage());
-    		return false;
-    	
+    		JOptionPane.showMessageDialog(null, "No se pudo eliminar el prestamo: " +e.getMessage());
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }	
   

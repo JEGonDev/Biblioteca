@@ -21,6 +21,7 @@ public class CrearLibroView extends JFrame {
 	public JTextField textCrearAnioPublicacionLibro;
 	public JTextField textCrearISBNLibro;
 	public JButton btnCrearNuevoLibro;
+	public JButton btnVolverCrearLibro;
 
 	/**
 	 * Create the frame.
@@ -88,5 +89,10 @@ public class CrearLibroView extends JFrame {
 		textCrearISBNLibro.setColumns(10);
 		textCrearISBNLibro.setBounds(10, 280, 304, 20);
 		contentPane.add(textCrearISBNLibro);
+		
+		btnVolverCrearLibro = new JButton("ATRAS");
+		btnVolverCrearLibro.setBackground(new Color(0, 255, 0));
+		btnVolverCrearLibro.setBounds(10, 29, 83, 23);
+		contentPane.add(btnVolverCrearLibro);
 	}
 }

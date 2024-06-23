@@ -25,6 +25,7 @@ public class ModificarLibroView extends JFrame {
 	public JTextField textIDBuscarLibro;
 	public JButton btnGuardarModificacionLibro;
 	public JButton btnBuscarIDLibro;
+	public JButton btnVolverModificarLibro;
 	/**
 	 * Create the frame.
 	 */
@@ -41,7 +42,7 @@ public class ModificarLibroView extends JFrame {
 		JLabel lblParaCrearEl = new JLabel("MODIFICAR LIBROS EXISTENTES");
 		lblParaCrearEl.setForeground(Color.GREEN);
 		lblParaCrearEl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblParaCrearEl.setBounds(117, 11, 209, 47);
+		lblParaCrearEl.setBounds(140, 11, 209, 47);
 		contentPane.add(lblParaCrearEl);
 		
 		JLabel lblNewLabel_1 = new JLabel("Titulo:");
@@ -105,6 +106,11 @@ public class ModificarLibroView extends JFrame {
 		btnBuscarIDLibro = new JButton("BUSCAR");
 		btnBuscarIDLibro.setBounds(324, 88, 100, 23);
 		contentPane.add(btnBuscarIDLibro);
+		
+		btnVolverModificarLibro = new JButton("ATRAS");
+		btnVolverModificarLibro.setBackground(new Color(0, 255, 0));
+		btnVolverModificarLibro.setBounds(10, 25, 89, 23);
+		contentPane.add(btnVolverModificarLibro);
 	
 	}
 }

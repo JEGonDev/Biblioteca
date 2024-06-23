@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,9 +12,12 @@ import java.awt.Color;
 public class ModificarCategoriaView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField textIDModificarCategoria;
-	private JTextField textModificarNombreCategoria;
+	public JPanel contentPane;
+	public JTextField textIDModificarCategoria;
+	public JTextField textModificarNombreCategoria;
+	public JButton btnModificarNombreCategoria;
+	public JButton btnBuscarIDCategoria;
+	public JButton btnVolverModificarCategoria;
 
 	/**
 	 * Create the frame.
@@ -45,7 +46,7 @@ public class ModificarCategoriaView extends JFrame {
 		textIDModificarCategoria.setBounds(10, 67, 304, 20);
 		contentPane.add(textIDModificarCategoria);
 		
-		JButton btnBuscarIDCategoria = new JButton("BUSCAR");
+		btnBuscarIDCategoria = new JButton("BUSCAR");
 		btnBuscarIDCategoria.setBounds(327, 66, 149, 23);
 		contentPane.add(btnBuscarIDCategoria);
 		
@@ -58,9 +59,14 @@ public class ModificarCategoriaView extends JFrame {
 		textModificarNombreCategoria.setBounds(10, 112, 304, 20);
 		contentPane.add(textModificarNombreCategoria);
 		
-		JButton btnModificarNombreCategoria = new JButton("MODIFICAR");
+		btnModificarNombreCategoria = new JButton("MODIFICAR");
 		btnModificarNombreCategoria.setBounds(327, 111, 149, 23);
 		contentPane.add(btnModificarNombreCategoria);
+		
+		btnVolverModificarCategoria = new JButton("VOLVER");
+		btnVolverModificarCategoria.setBackground(Color.GREEN);
+		btnVolverModificarCategoria.setBounds(10, 14, 89, 23);
+		contentPane.add(btnVolverModificarCategoria);
 	}
 
 }

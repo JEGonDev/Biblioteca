@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -14,8 +12,10 @@ import java.awt.Color;
 public class CrearCategoriaView extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField textNombreCategoria;
+	public JPanel contentPane;
+	public JTextField textNombreCategoria;
+	public JButton btnGuardarNombreCategoria;
+	public JButton btnVolverCrearCategoria;
 
 	/**
 	 * Create the frame.
@@ -32,7 +32,7 @@ public class CrearCategoriaView extends JFrame {
 		JLabel lblNewLabel = new JLabel("CREAR CATEGORIA");
 		lblNewLabel.setForeground(Color.GREEN);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(95, 11, 142, 24);
+		lblNewLabel.setBounds(151, 11, 142, 24);
 		contentPane.add(lblNewLabel);
 		
 		textNombreCategoria = new JTextField();
@@ -44,8 +44,13 @@ public class CrearCategoriaView extends JFrame {
 		lblNewLabel_1.setBounds(10, 46, 225, 14);
 		contentPane.add(lblNewLabel_1);
 		
-		JButton btnGuardarNombreCategoria = new JButton("GUARDAR");
-		btnGuardarNombreCategoria.setBounds(111, 91, 89, 23);
+		btnGuardarNombreCategoria = new JButton("GUARDAR");
+		btnGuardarNombreCategoria.setBounds(111, 91, 106, 23);
 		contentPane.add(btnGuardarNombreCategoria);
+		
+		btnVolverCrearCategoria = new JButton("VOLVER");
+		btnVolverCrearCategoria.setBackground(new Color(0, 255, 0));
+		btnVolverCrearCategoria.setBounds(10, 12, 89, 23);
+		contentPane.add(btnVolverCrearCategoria);
 	}
 }

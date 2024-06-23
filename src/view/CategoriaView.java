@@ -1,7 +1,5 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -10,38 +8,29 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import model.CategoriaDAO;
-import model.DatabaseConnection;
+import controller.CategoriaController;
 
-public class CategoriaView extends JFrame implements ActionListener{
+public class CategoriaView extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
+	public JPanel contentPane;
 	public JTextField textIDEliminarCategoria;
-	private JTable table;
-	private DefaultTableModel modelo;
+	public JTable table;
+	public DefaultTableModel modelo;
 	public JButton btnMostrarCategoria;
-	private Connection connection;
 	public JButton btnCrearCategoria;
 	public JButton btnEliminarCategoria;
 	public JButton btnModificarCategoria;
-	private Connection conexion;
 
 	/**
 	 * Create the frame.
 	 * @param conexion 
 	 */
-	public CategoriaView(Connection conexion) throws SQLException {
-		DatabaseConnection connection = new DatabaseConnection();
-		connection.getConnection();
+	public CategoriaView() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 595, 348);
@@ -82,11 +71,6 @@ public class CategoriaView extends JFrame implements ActionListener{
 		btnModificarCategoria = new JButton("MODIFICAR categoria");
 		btnModificarCategoria.setBounds(10, 265, 271, 36);
 		contentPane.add(btnModificarCategoria);
-		/* PREGUNTAR QUE HACE ESO SE GENERO SOLO Y ESTABA DENTRO EL ANTERIOR BOTON
-		 * btnActualizarCategoria.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});*/
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 61, 559, 144);
@@ -98,25 +82,8 @@ public class CategoriaView extends JFrame implements ActionListener{
 		
 		modelo.addColumn("ID");
 		modelo.addColumn("Nombre");
-		
-		
-		
+	
 		scrollPane.setViewportView(table);
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	/*@Override
-	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == btnMostrarCategoria) {
-			CategoriaDAO categoriaDAO = new CategoriaDAO();
-			categoriaDAO.LeerCategorias( connection , modelo);
-			
-		}
-		
-	}*/
 }

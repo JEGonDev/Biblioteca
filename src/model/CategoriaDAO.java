@@ -3,7 +3,6 @@ package model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -17,7 +16,7 @@ public class CategoriaDAO extends DatabaseConnection{
     	
 	}
 
-	public boolean CrearCategoria (Categoria categoria) {
+	public void crearCategoria (Categoria categoria) {
     	
     	try {
         	this.conexion = getConnection();
@@ -31,22 +30,20 @@ public class CategoriaDAO extends DatabaseConnection{
     		sentencia.setString(1, categoria.getNombre());
     		//Se ejecuta 
     		sentencia.execute();
-    		return true;
+            JOptionPane.showMessageDialog(null, "¡Categoria registrada correctamente!");
+
+    		sentencia.close();
     		
     	} catch (SQLException e) {
-    		System.err.println(e);
-    		return false;
+            JOptionPane.showMessageDialog(null, "Error al intentar registrar categoria: " + e.getMessage());
+    	
     	//finally para cerrar conexion
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
-    public boolean LeerCategorias (Categoria categoria, DefaultTableModel modelo) {
+    public void mostrarCategoria (DefaultTableModel modelo) {
     	
     	try {
     		this.conexion = getConnection();
@@ -66,28 +63,22 @@ public class CategoriaDAO extends DatabaseConnection{
     			int id = resultado.getInt("id");
     			String nombre = resultado.getString("nombre");
     			
-    			
-    			
     			Object[] fila = {id,nombre};
     			//Se agrega la fila creada al DefaultTableModel
     			modelo.addRow(fila);
     		}
-    		return true;
+    		resultado.close();
+    		sentencia.close();
     		
     	} catch (SQLException e) {
     		System.err.println(e);
-    		return false;
     	
     	}finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection(); 
     	}
     }
 
-    public boolean ModificarCategorias (Categoria categoria) {
+    public void modificarCategoria (Categoria categoria) {
     	
     	try {
     	 	this.conexion = getConnection();
@@ -101,22 +92,18 @@ public class CategoriaDAO extends DatabaseConnection{
     		sentencia.setInt(2, categoria.getId());
     		
     		sentencia.execute();
-    		return true;
+			JOptionPane.showMessageDialog(null, "¡Categoria actulizada correctamente!");
+
     		
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println("Error al actualizar: " + e.getMessage());
-    		return false;
-    	
+			JOptionPane.showMessageDialog(null, "¡el registro no se ha actualizado correctamente!" + e.getErrorCode());    	
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
 
-    public boolean EliminarCategorias (Categoria categoria) {
+    public void eliminarCategoria (Categoria categoria) {
     	try {
     		this.conexion = getConnection();
         	String sql = "DELETE FROM categorias WHERE id = ?";
@@ -127,25 +114,21 @@ public class CategoriaDAO extends DatabaseConnection{
     		sentencia.setInt(1, categoria.getId());
     		
     		sentencia.execute();
-    		return true;
-    		
+			JOptionPane.showMessageDialog(null,"La categoria se eliminó correctamente.");
+
+    		sentencia.close();
     	} catch (SQLException e) {
-    		System.err.println("Error al actualizar: " + e.getMessage());
-    		return false;
+    		JOptionPane.showMessageDialog(null,"Ha ocurrido un problema al intentar eliminar el registro: " + e.getMessage());
     	
     	} finally {
-    		try {
-    			conexion.close();
-    		} catch (SQLException e) {
-    			System.err.println("Error al cerrar la conexion: " +e.getMessage());
-    		}
+    		closeConnection();
     	}
     }
     
     //Metodo adicional para traer el contenido de un libro  
     // y luego modificar ese mismo libro en una nueva ventana
      
-     public void TraerContenidoCategoria (Categoria categoria){
+     public void traerContenidoCategoria (Categoria categoria){
      	try {
              this.conexion = getConnection();
              String sql = "SELECT * FROM categorias WHERE id = ?";
