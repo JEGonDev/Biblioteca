@@ -101,7 +101,11 @@ public class LibroController implements ActionListener {
             // Crear el libro en el modelo
             modelo.crearLibro(libro);
 
-         
+            crear.textCrearAnioPublicacionLibro.setText("");
+            crear.textCrearAutorLibro.setText("");
+            crear.textCrearEditorialLibro.setText("");
+            crear.textCrearISBNLibro.setText("");
+            crear.textCrearTituloLibro.setText("");
         }
 
         //Esto permite que al oprimir el boton se abra el formulario en cuestion
@@ -152,7 +156,12 @@ public class LibroController implements ActionListener {
                 // Guardar cambios en el modelo
                 modelo.modificarLibro(libro);
 
-                
+                modificar.textIDBuscarLibro.setText("");
+                modificar.textModificarAnioPublicacionLibro.setText("");
+                modificar.textModificarAutorLibro.setText("");
+                modificar.textModificarEditorialLibro.setText("");
+                modificar.textModificarISBNLibro.setText("");
+                modificar.textModificarTituloLibro.setText("");
             }
         }
     }

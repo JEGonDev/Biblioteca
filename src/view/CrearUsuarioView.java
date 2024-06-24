@@ -26,15 +26,16 @@ public class CrearUsuarioView extends JFrame {
 	 */
 	public CrearUsuarioView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 531, 244);
+		setBounds(100, 100, 540, 244);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblParaCrearEl = new JLabel("CREA UN NUEVO USUARIO");
-		lblParaCrearEl.setForeground(Color.GREEN);
+		lblParaCrearEl.setForeground(new Color(0, 0, 0));
 		lblParaCrearEl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaCrearEl.setBounds(176, 25, 177, 24);
 		contentPane.add(lblParaCrearEl);
@@ -49,7 +50,7 @@ public class CrearUsuarioView extends JFrame {
 		contentPane.add(textCrearEmailUsuario);
 		
 		btnCrearNuevoUsuario = new JButton("GUARDAR");
-		btnCrearNuevoUsuario.setBounds(416, 94, 89, 71);
+		btnCrearNuevoUsuario.setBounds(416, 94, 98, 71);
 		contentPane.add(btnCrearNuevoUsuario);
 		
 		textCrearTelefonoUsuario = new JTextField();

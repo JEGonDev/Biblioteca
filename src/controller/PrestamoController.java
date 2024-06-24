@@ -53,103 +53,120 @@ public class PrestamoController implements ActionListener{
 	@Override //Metodo que permite que los botones sean escuchados
 	public void actionPerformed(ActionEvent e) {
 		
-		//boton volver ventana principal
-		if (e.getSource() == vista.btnVolverPrestamos) {
-			biblioteca.setVisible(true);
-			vista.setVisible(false);
-		}
-		
-		//mostrar tabla 
-		if (e.getSource() == vista.btnMostrarPrestamos) {
-			modelo.LeerPrestamo(vista.model);
-		}
-		
-    	//toma id del campo de texto y elimina segun ese id
-		if (e.getSource() == vista.btnEliminarPrestamo) {
-			int id = Integer.parseInt(vista.textCodigoEliminarPrestamo.getText());
-			prestamo.setId(id);
-			modelo.EliminarPrestamo(prestamo);
-			vista.textCodigoEliminarPrestamo.setText("");
-		}
-		
-		//ventana crear prestamo
-		if (e.getSource() == vista.btnCrearNuevoPrestamo) {
-			crear.setVisible(true);
-			vista.dispose();
-		}
-		
-		//atras crear prestamo
-		if (e.getSource() == crear.btnVolverCrearPrestamo) {
-			vista.setVisible(true);
-			crear.setVisible(false);
-		}
-		
-		//guardar datos suministrados y crear prestamo
-		if (e.getSource() == crear.btnCrearNuevoPrestamo) {
-			//otiene valores de los campos de texto
-			String libroID = crear.textIDClientePrestamo.getText();
-			int libro_id = Integer.parseInt(libroID);
-			String usuarioID = crear.textIDLibroPrestamo.getText();
-			int usuario_id = Integer.parseInt(usuarioID);
-			String fecha_prestamo = crear.textCrearFechaInicioPrestamo.getText();
-			String fecha_devolucion = crear.textCrearFechaDevolucion.getText();		
-			
-			//asigna los valores
-			prestamo.setLibro_id(libro_id);
-			prestamo.setUsuario_id(usuario_id);
-			prestamo.setFecha_prestamo(fecha_prestamo);
-			prestamo.setFecha_devolucion(fecha_devolucion);
-			
-			//crea el libro
-			modelo.CrearPrestamo(prestamo);
-		}
-		
-		//abrir ventana modificar prestamos
-		if (e.getSource() == vista.btnModificarPrestamo) {
-			modificar.setVisible(true);
-			vista.dispose();
-		}
-		
-		//Volver a la ventana principal
-		if (e.getSource() == modificar.btnVolverModificarPrestamo) {
-			vista.setVisible(true);
-			modificar.setVisible(false);
-		}
-		
-		//obtiene el contenido segun el id del prestamo
-		if (e.getSource() == modificar.btnBuscarIDPrestamo) {
-			int id = Integer.parseInt(modificar.textIDBuscarPrestamo.getText());
-			prestamo.setId(id);
-			modelo.TraerContenidoPrestamo(prestamo);
-			
-			modificar.textModificarLibroID.setText(String.valueOf(prestamo.getLibro_id()));
-			modificar.textModificarUsuarioID.setText(String.valueOf(prestamo.getUsuario_id()));
-			modificar.textModificarFechaInicioPrestamo.setText(prestamo.getFecha_prestamo());
-			modificar.textModificarFechaDevolucionPrestamo.setText(prestamo.getFecha_devolucion());
-			
-			
-		}
-		//guardar las modificaciones del usuario
-		if (e.getSource() == modificar.btnGuardarModificacionPrestamo) {
-			//obtener valores modificados del formulario
-			String libroID = crear.textIDClientePrestamo.getText();
-			int libro_id = Integer.parseInt(libroID);
-			String usuarioID = crear.textIDLibroPrestamo.getText();
-			int usuario_id = Integer.parseInt(usuarioID);
-			String fecha_prestamo = crear.textCrearFechaInicioPrestamo.getText();
-			String fecha_devolucion = crear.textCrearFechaDevolucion.getText();		
-			//asigna los valores
-			prestamo.setLibro_id(libro_id);
-			prestamo.setUsuario_id(usuario_id);
-			prestamo.setFecha_prestamo(fecha_prestamo);
-			prestamo.setFecha_devolucion(fecha_devolucion);
-			
-			//crea el libro
-			modelo.ModificarPrestamo(prestamo);
-		}
-	}
+		//Carga la tabla categorias de la base de datos
+				if (e.getSource() == vista.btnMostrarPrestamos) {
+					modelo.LeerPrestamo(vista.model);
+				}
+				
+				//volver ventana principal
+				if (e.getSource() == vista.btnVolverPrestamos) {
+					biblioteca.setVisible(true);
+					vista.setVisible(false);
+				}
+				
+				//Abre la ventana vista crear
+				if (e.getSource() == vista.btnCrearNuevoPrestamo) {
+					crear.setVisible(true);
+					vista.dispose();
+				}
+				
+				//Abre la ventana vista modificar
+				if (e.getSource() == vista.btnModificarPrestamo) {
+					modificar.setVisible(true);
+					vista.dispose();
+				}
+				
+				//regresa a la ventana principal de categoria
+				if (e.getSource() == modificar.btnVolverModificarPrestamo) {
+					vista.setVisible(true);
+					modificar.setVisible(false);
+				}
+					
+				//regresa a la ventana principal de categoria
+				if (e.getSource() == crear.btnVolverCrearPrestamo) {
+					vista.setVisible(true);
+					crear.setVisible(false);
+				}
+				
+				//Accion del texto eliminar y btn eliminar
+				if (e.getSource() == vista.btnEliminarPrestamo) {
+					int id = Integer.parseInt(vista.textCodigoEliminarPrestamo.getText());
+					prestamo.setId(id);
+					modelo.EliminarPrestamo(prestamo);
+					vista.textCodigoEliminarPrestamo.setText("");
+				}
+				
+				//Accion guardar campos al oprimir boton crearNuevoLibro
+				if (e.getSource() == crear.btnCrearNuevoPrestamo) {
+					//obtener valores
+					String libroID = crear.textIDLibroPrestamo.getText();
+					int libro_id = Integer.parseInt(libroID);
+					String usuarioID = crear.textIDClientePrestamo.getText();
+					int usuario_id = Integer.parseInt(usuarioID);
+					String fecha_prestamo = crear.textCrearFechaInicioPrestamo.getText();
+					String fecha_devolucion = crear.textCrearFechaDevolucion.getText();
+					
+					//asignar valores al objeto libro
+					prestamo.setLibro_id(libro_id);
+					prestamo.setUsuario_id(usuario_id);
+					prestamo.setFecha_prestamo(fecha_prestamo);
+					prestamo.setFecha_devolucion(fecha_devolucion);
+					
+					//Crear la categoria en el modelo
+					modelo.CrearPrestamo(prestamo);
+					
+					//limpiar campos de texto despues de crear
+					crear.textCrearFechaDevolucion.setText("");
+					crear.textCrearFechaInicioPrestamo.setText("");
+					crear.textIDClientePrestamo.setText("");
+					crear.textIDLibroPrestamo.setText("");
+				}
+					
+				//Accion para traer el contenido segun el id de la categoira
+				if (e.getSource() == modificar.btnBuscarIDPrestamo) {
+					int id = Integer.parseInt(modificar.textIDBuscarPrestamo.getText()); 
+					prestamo.setId(id);
+					modelo.TraerContenidoPrestamo(prestamo);
+					
+					//Asignar valores obtenidos al formulario de modificacion
+					modificar.textIDBuscarPrestamo.setText(String.valueOf(prestamo.getId()));
+					modificar.textModificarLibroID.setText(String.valueOf(prestamo.getLibro_id()));
+					modificar.textModificarUsuarioID.setText(String.valueOf(prestamo.getUsuario_id()));
+					modificar.textModificarFechaInicioPrestamo.setText(prestamo.getFecha_prestamo());
+					modificar.textModificarFechaDevolucionPrestamo.setText(prestamo.getFecha_devolucion());
+					
+				}
+				
+				//Accion para guardar las modificaciones en la base de datos
+				if (e.getSource() == modificar.btnGuardarModificacionPrestamo) {
+				    String prestamoID = modificar.textIDBuscarPrestamo.getText(); // ID del préstamo a modificar
+				    int id = Integer.parseInt(prestamoID);
+				    String libroID = modificar.textModificarLibroID.getText();
+				    int libro_id = Integer.parseInt(libroID);
+				    String usuarioID = modificar.textModificarUsuarioID.getText();
+				    int usuario_id = Integer.parseInt(usuarioID);
+				    String fecha_prestamo = modificar.textModificarFechaInicioPrestamo.getText();
+				    String fecha_devolucion = modificar.textModificarFechaDevolucionPrestamo.getText();
+				    
+				    // Asignar valores al objeto prestamo
+				    prestamo.setId(id); // establecer ID del préstamo
+				    prestamo.setLibro_id(libro_id);
+				    prestamo.setUsuario_id(usuario_id);
+				    prestamo.setFecha_prestamo(fecha_prestamo);
+				    prestamo.setFecha_devolucion(fecha_devolucion);
+				    
+				    // Modificar el préstamo en el modelo
+				    modelo.ModificarPrestamo(prestamo);
+				    
+				    // Limpiar campos de texto después de modificar
+				    modificar.textModificarFechaDevolucionPrestamo.setText("");
+				    modificar.textIDBuscarPrestamo.setText("");
+				    modificar.textModificarUsuarioID.setText("");
+				    modificar.textModificarLibroID.setText("");
+				    modificar.textModificarFechaInicioPrestamo.setText("");
+				}
 
-}
+}}
 
 
 

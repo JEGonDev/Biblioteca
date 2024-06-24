@@ -34,6 +34,7 @@ public class LibroView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 594, 355);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -42,7 +43,7 @@ public class LibroView extends JFrame{
 		JLabel lblModificarLibros = new JLabel("LIBROS");
 		lblModificarLibros.setHorizontalAlignment(SwingConstants.LEFT);
 		lblModificarLibros.setBounds(271, 0, 137, 29);
-		lblModificarLibros.setForeground(Color.RED);
+		lblModificarLibros.setForeground(new Color(0, 0, 0));
 		lblModificarLibros.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
 		contentPane.add(lblModificarLibros);
 		
@@ -65,6 +66,7 @@ public class LibroView extends JFrame{
 		contentPane.add(textCodigoEliminarLibro);
 		
 		btnEliminarLibro = new JButton("ELIMINAR");
+		btnEliminarLibro.setBackground(new Color(255, 128, 128));
 		btnEliminarLibro.setBounds(418, 237, 151, 23);
 		contentPane.add(btnEliminarLibro);
 		

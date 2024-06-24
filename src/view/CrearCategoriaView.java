@@ -24,13 +24,14 @@ public class CrearCategoriaView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 340, 181);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("CREAR CATEGORIA");
-		lblNewLabel.setForeground(Color.GREEN);
+		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel.setBounds(151, 11, 142, 24);
 		contentPane.add(lblNewLabel);
@@ -45,6 +46,7 @@ public class CrearCategoriaView extends JFrame {
 		contentPane.add(lblNewLabel_1);
 		
 		btnGuardarNombreCategoria = new JButton("GUARDAR");
+		btnGuardarNombreCategoria.setForeground(new Color(0, 0, 0));
 		btnGuardarNombreCategoria.setBounds(111, 91, 106, 23);
 		contentPane.add(btnGuardarNombreCategoria);
 		

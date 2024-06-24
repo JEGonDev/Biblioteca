@@ -34,6 +34,7 @@ public class PrestamoView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 595, 341);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -41,7 +42,7 @@ public class PrestamoView extends JFrame{
 		
 		JLabel lblModificarPrestamos = new JLabel("PRESTAMOS");
 		lblModificarPrestamos.setHorizontalAlignment(SwingConstants.LEFT);
-		lblModificarPrestamos.setForeground(Color.RED);
+		lblModificarPrestamos.setForeground(new Color(0, 0, 0));
 		lblModificarPrestamos.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
 		lblModificarPrestamos.setBounds(227, 0, 107, 29);
 		contentPane.add(lblModificarPrestamos);
@@ -65,6 +66,7 @@ public class PrestamoView extends JFrame{
 		contentPane.add(textCodigoEliminarPrestamo);
 		
 		btnEliminarPrestamo = new JButton("Eliminar registro");
+		btnEliminarPrestamo.setBackground(new Color(255, 128, 128));
 		btnEliminarPrestamo.setBounds(418, 230, 151, 23);
 		contentPane.add(btnEliminarPrestamo);
 		

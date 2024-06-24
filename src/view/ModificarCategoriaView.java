@@ -26,13 +26,14 @@ public class ModificarCategoriaView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 190);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblOprimeElBoton_1 = new JLabel("MODIFICAR CATEGORIA");
-		lblOprimeElBoton_1.setForeground(Color.GREEN);
+		lblOprimeElBoton_1.setForeground(new Color(0, 0, 0));
 		lblOprimeElBoton_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblOprimeElBoton_1.setBounds(166, 11, 168, 24);
 		contentPane.add(lblOprimeElBoton_1);

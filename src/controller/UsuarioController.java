@@ -104,6 +104,10 @@ public class UsuarioController implements ActionListener{
 			
 			//Crear la categoria en el modelo
 			modelo.CrearUsuario(usuario);
+			
+			crear.textCrearEmailUsuario.setText("");
+			crear.textCrearNombreUsuario.setText("");
+			crear.textCrearTelefonoUsuario.setText("");
 		}
 			
 		//Accion para traer el contenido segun el id de la categoira
@@ -121,15 +125,20 @@ public class UsuarioController implements ActionListener{
 		
 		//Accion para guardar las modificaciones en la base de datos
 		if (e.getSource() == modificar.btnGuardarModificacionUsuario) {
-			String nombre = crear.textCrearNombreUsuario.getText();
-			String email = crear.textCrearEmailUsuario.getText();
-			String telefono = crear.textCrearTelefonoUsuario.getText();			
+			String nombre = modificar.textModificarNombreUsuario.getText();
+			String email = modificar.textModificarEmailUsuario.getText();
+			String telefono = modificar.textModificarTelefonoUsuario.getText();			
 		//Actualiza la base de datos en el campo del id
 			usuario.setNombre(nombre);
 			usuario.setEmail(email);
 			usuario.setTelefono(telefono);			
 		//Guardar cambios en el modelo (tabla)
 			modelo.ModificarUsuario(usuario);
+			
+			modificar.textIDBuscarUsuario.setText("");
+			modificar.textModificarEmailUsuario.setText("");
+			modificar.textModificarNombreUsuario.setText("");
+			modificar.textModificarTelefonoUsuario.setText("");
 		}
 		
 	}

@@ -26,15 +26,16 @@ public class CrearPrestamoView extends JFrame {
 	 */
 	public CrearPrestamoView() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 531, 312);
+		setBounds(100, 100, 539, 312);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblParaCrearEl = new JLabel("CREA UN NUEVO PRESTAMO");
-		lblParaCrearEl.setForeground(Color.GREEN);
+		lblParaCrearEl.setForeground(new Color(0, 0, 0));
 		lblParaCrearEl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaCrearEl.setBounds(176, 25, 177, 24);
 		contentPane.add(lblParaCrearEl);
@@ -49,7 +50,7 @@ public class CrearPrestamoView extends JFrame {
 		contentPane.add(textCrearFechaInicioPrestamo);
 		
 		btnCrearNuevoPrestamo = new JButton("GUARDAR");
-		btnCrearNuevoPrestamo.setBounds(416, 119, 89, 71);
+		btnCrearNuevoPrestamo.setBounds(404, 119, 109, 71);
 		contentPane.add(btnCrearNuevoPrestamo);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("Ingrese la fecha en la que debe hacerse la devolucion del libro (YYYY-MM-DD):");

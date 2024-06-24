@@ -110,6 +110,8 @@ public class CategoriaController implements ActionListener {
 			
 			//Crear la categoria en el modelo
 			modelo.crearCategoria(categoria);
+			
+			crear.textNombreCategoria.setText("");
 		}
 			
 		//Accion para traer el contenido segun el id de la categoira
@@ -132,6 +134,9 @@ public class CategoriaController implements ActionListener {
 			
 		//Guardar cambios en el modelo (tabla)
 			modelo.modificarCategoria(categoria);
+			
+			modificar.textIDModificarCategoria.setText("");
+			modificar.textModificarNombreCategoria.setText("");
 		}
 	}  
 }

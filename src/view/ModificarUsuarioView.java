@@ -29,13 +29,14 @@ public class ModificarUsuarioView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 313);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblParaCrearEl = new JLabel("MODIFICAR USUARIOS EXISTENTES");
-		lblParaCrearEl.setForeground(Color.GREEN);
+		lblParaCrearEl.setForeground(new Color(0, 0, 0));
 		lblParaCrearEl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaCrearEl.setBounds(131, 11, 241, 47);
 		contentPane.add(lblParaCrearEl);

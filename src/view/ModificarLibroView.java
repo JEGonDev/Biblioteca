@@ -30,13 +30,14 @@ public class ModificarLibroView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 449, 420);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblParaCrearEl = new JLabel("MODIFICAR LIBROS EXISTENTES");
-		lblParaCrearEl.setForeground(Color.GREEN);
+		lblParaCrearEl.setForeground(new Color(0, 0, 0));
 		lblParaCrearEl.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblParaCrearEl.setBounds(140, 11, 209, 47);
 		contentPane.add(lblParaCrearEl);

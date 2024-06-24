@@ -34,6 +34,7 @@ public class CategoriaView extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 595, 348);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -41,11 +42,12 @@ public class CategoriaView extends JFrame{
 		
 		JLabel lblModificarCategoria = new JLabel("CATEGORIAS");
 		lblModificarCategoria.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
-		lblModificarCategoria.setForeground(Color.RED);
+		lblModificarCategoria.setForeground(new Color(0, 0, 0));
 		lblModificarCategoria.setBounds(232, 0, 113, 29);
 		contentPane.add(lblModificarCategoria);
 		
 		btnCrearCategoria = new JButton("CREAR Categoria");
+		btnCrearCategoria.setBackground(new Color(255, 255, 255));
 		btnCrearCategoria.setBounds(298, 265, 271, 36);
 		contentPane.add(btnCrearCategoria);
 		
@@ -55,6 +57,7 @@ public class CategoriaView extends JFrame{
 		contentPane.add(lblEliminarCategoria);
 		
 		btnEliminarCategoria = new JButton("ELIMINAR");
+		btnEliminarCategoria.setBackground(new Color(255, 128, 128));
 		btnEliminarCategoria.setBounds(418, 231, 151, 23);
 		contentPane.add(btnEliminarCategoria);
 		
@@ -64,10 +67,12 @@ public class CategoriaView extends JFrame{
 		contentPane.add(textIDEliminarCategoria);
 		
 		btnMostrarCategoria = new JButton("Mostrar categorias existentes");
+		btnMostrarCategoria.setBackground(new Color(255, 255, 255));
 		btnMostrarCategoria.setBounds(148, 36, 271, 23);
 		contentPane.add(btnMostrarCategoria);
 		
 		btnModificarCategoria = new JButton("MODIFICAR categoria");
+		btnModificarCategoria.setBackground(new Color(255, 255, 255));
 		btnModificarCategoria.setBounds(10, 265, 271, 36);
 		contentPane.add(btnModificarCategoria);
 

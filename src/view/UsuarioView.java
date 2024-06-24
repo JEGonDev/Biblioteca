@@ -34,6 +34,7 @@ public class UsuarioView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 596, 385);
 		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
@@ -42,7 +43,7 @@ public class UsuarioView extends JFrame {
 		JLabel lblModificarUsuario = new JLabel("USUARIOS");
 		lblModificarUsuario.setBounds(249, 0, 123, 21);
 		lblModificarUsuario.setHorizontalAlignment(SwingConstants.LEFT);
-		lblModificarUsuario.setForeground(Color.RED);
+		lblModificarUsuario.setForeground(new Color(0, 0, 0));
 		lblModificarUsuario.setFont(new Font("Trebuchet MS", Font.PLAIN, 18));
 		contentPane.add(lblModificarUsuario);
 		
@@ -65,6 +66,7 @@ public class UsuarioView extends JFrame {
 		contentPane.add(textCodigoEliminarUsuario);
 		
 		btnEliminarUsuario = new JButton("Eliminar usuario");
+		btnEliminarUsuario.setBackground(new Color(255, 128, 128));
 		btnEliminarUsuario.setBounds(418, 254, 151, 23);
 		contentPane.add(btnEliminarUsuario);
 		
