@@ -9,7 +9,7 @@ public class UsuarioDAO extends DatabaseConnection{
 
     private Connection conexion;
 
-    public UsuarioDAO(Connection conexion) {
+    public UsuarioDAO() {
     }
 
     // Crear los metodos CRUD: crear, leer, actualizar y eliminar
@@ -38,7 +38,7 @@ public class UsuarioDAO extends DatabaseConnection{
     	}
     }
     
-    public void LeerUsuario (Usuario usuario, DefaultTableModel modelo) {
+    public void LeerUsuario (DefaultTableModel modelo) {
     	
     	try {
     		this.conexion = getConnection();

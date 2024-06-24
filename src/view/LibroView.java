@@ -24,6 +24,7 @@ public class LibroView extends JFrame{
 	public JButton btnEliminarLibro;
 	public JButton btnModificarLibro;
 	public DefaultTableModel model;
+	public JButton btnVolverLibros;
 
 	/**
 	 * Create the frame.
@@ -86,5 +87,10 @@ public class LibroView extends JFrame{
 		
 		table.setModel(model);
 		scrollPane.setViewportView(table);
+		
+		btnVolverLibros = new JButton("VOLVER");
+		btnVolverLibros.setBackground(Color.GREEN);
+		btnVolverLibros.setBounds(10, 11, 89, 23);
+		contentPane.add(btnVolverLibros);
 	}
 }

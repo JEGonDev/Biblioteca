@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -20,6 +19,7 @@ public class CrearPrestamoView extends JFrame {
 	public JTextField textIDLibroPrestamo;
 	public JTextField textIDClientePrestamo;
 	public JButton btnCrearNuevoPrestamo;
+	public JButton btnVolverCrearPrestamo;
 
 	/**
 	 * Create the frame.
@@ -78,5 +78,10 @@ public class CrearPrestamoView extends JFrame {
 		textIDClientePrestamo.setColumns(10);
 		textIDClientePrestamo.setBounds(10, 120, 384, 20);
 		contentPane.add(textIDClientePrestamo);
+		
+		btnVolverCrearPrestamo = new JButton("VOLVER");
+		btnVolverCrearPrestamo.setBackground(Color.GREEN);
+		btnVolverCrearPrestamo.setBounds(10, 28, 89, 23);
+		contentPane.add(btnVolverCrearPrestamo);
 	}
 }

@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -19,9 +17,10 @@ public class ModificarUsuarioView extends JFrame {
 	public JTextField textModificarNombreUsuario;
 	public JTextField textModificarEmailUsuario;
 	public JTextField textModificarTelefonoUsuario;
-	public JButton btnGuardarModificacionPrestamo;
+	public JButton btnGuardarModificacionUsuario;
 	public JTextField textIDBuscarUsuario;
 	public JButton btnBuscarIDUsuario;
+	public JButton btnVolverModificarUsuarios;
 
 	/**
 	 * Create the frame.
@@ -38,7 +37,7 @@ public class ModificarUsuarioView extends JFrame {
 		JLabel lblParaCrearEl = new JLabel("MODIFICAR USUARIOS EXISTENTES");
 		lblParaCrearEl.setForeground(Color.GREEN);
 		lblParaCrearEl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblParaCrearEl.setBounds(102, 11, 241, 47);
+		lblParaCrearEl.setBounds(131, 11, 241, 47);
 		contentPane.add(lblParaCrearEl);
 		
 		JLabel lblNewLabel_1 = new JLabel("Nombre del usuario:");
@@ -68,9 +67,9 @@ public class ModificarUsuarioView extends JFrame {
 		textModificarTelefonoUsuario.setBounds(10, 241, 304, 20);
 		contentPane.add(textModificarTelefonoUsuario);
 		
-		btnGuardarModificacionPrestamo = new JButton("MODIFICAR");
-		btnGuardarModificacionPrestamo.setBounds(324, 157, 100, 77);
-		contentPane.add(btnGuardarModificacionPrestamo);
+		btnGuardarModificacionUsuario = new JButton("MODIFICAR");
+		btnGuardarModificacionUsuario.setBounds(324, 157, 100, 77);
+		contentPane.add(btnGuardarModificacionUsuario);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("Ingresa el id del ususario que desea modificar:");
 		lblNewLabel_1_3.setBounds(10, 75, 271, 14);
@@ -84,6 +83,11 @@ public class ModificarUsuarioView extends JFrame {
 		btnBuscarIDUsuario = new JButton("BUSCAR");
 		btnBuscarIDUsuario.setBounds(324, 88, 100, 23);
 		contentPane.add(btnBuscarIDUsuario);
+		
+		btnVolverModificarUsuarios = new JButton("ATRAS");
+		btnVolverModificarUsuarios.setBackground(Color.GREEN);
+		btnVolverModificarUsuarios.setBounds(10, 25, 89, 23);
+		contentPane.add(btnVolverModificarUsuarios);
 	}
 
 }

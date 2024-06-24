@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -24,6 +23,7 @@ public class ModificarPrestamoView extends JFrame {
 	public JButton btnGuardarModificacionPrestamo;
 	public JTextField textIDBuscarPrestamo;
 	public JButton btnBuscarIDPrestamo;
+	public JButton btnVolverModificarPrestamo;
 
 	/**
 	 * Create the frame.
@@ -41,7 +41,7 @@ public class ModificarPrestamoView extends JFrame {
 		JLabel lblParaCrearEl = new JLabel("MODIFICAR PRESTAMOS EXISTENTES");
 		lblParaCrearEl.setForeground(Color.GREEN);
 		lblParaCrearEl.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblParaCrearEl.setBounds(102, 11, 241, 47);
+		lblParaCrearEl.setBounds(129, 11, 241, 47);
 		contentPane.add(lblParaCrearEl);
 		
 		JLabel lblNewLabel_1 = new JLabel("Libro ID:");
@@ -96,6 +96,11 @@ public class ModificarPrestamoView extends JFrame {
 		btnBuscarIDPrestamo = new JButton("BUSCAR");
 		btnBuscarIDPrestamo.setBounds(324, 88, 100, 23);
 		contentPane.add(btnBuscarIDPrestamo);
+		
+		btnVolverModificarPrestamo = new JButton("VOLVER");
+		btnVolverModificarPrestamo.setBackground(Color.GREEN);
+		btnVolverModificarPrestamo.setBounds(10, 25, 89, 23);
+		contentPane.add(btnVolverModificarPrestamo);
 	
 	}
 

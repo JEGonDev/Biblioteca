@@ -1,8 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.EventQueue;
 import java.awt.Font;
 
 import javax.swing.JButton;
@@ -17,10 +15,11 @@ public class CrearUsuarioView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	public JPanel contentPane;
 	public JTextField textCrearEmailUsuario;
-	public JButton btnCrearNuevoPrestamo;
+	public JButton btnCrearNuevoUsuario;
 	public JTextField textCrearTelefonoUsuario;
 	public JTextField textCrearNombreUsuario;
-	public JTextField textIDClientePrestamo;
+	public JTextField textIDUsuario;
+	public JButton btnVolverCrearUsuario;
 
 	/**
 	 * Create the frame.
@@ -49,9 +48,9 @@ public class CrearUsuarioView extends JFrame {
 		textCrearEmailUsuario.setBounds(10, 120, 384, 20);
 		contentPane.add(textCrearEmailUsuario);
 		
-		btnCrearNuevoPrestamo = new JButton("GUARDAR");
-		btnCrearNuevoPrestamo.setBounds(416, 94, 89, 71);
-		contentPane.add(btnCrearNuevoPrestamo);
+		btnCrearNuevoUsuario = new JButton("GUARDAR");
+		btnCrearNuevoUsuario.setBounds(416, 94, 89, 71);
+		contentPane.add(btnCrearNuevoUsuario);
 		
 		textCrearTelefonoUsuario = new JTextField();
 		textCrearTelefonoUsuario.setColumns(10);
@@ -70,6 +69,11 @@ public class CrearUsuarioView extends JFrame {
 		JLabel lblNewLabel_1_2_1 = new JLabel("Ingresa el EMAIL del usuario:");
 		lblNewLabel_1_2_1.setBounds(10, 108, 344, 14);
 		contentPane.add(lblNewLabel_1_2_1);
+		
+		btnVolverCrearUsuario = new JButton("VOLVER");
+		btnVolverCrearUsuario.setBackground(Color.GREEN);
+		btnVolverCrearUsuario.setBounds(10, 26, 89, 23);
+		contentPane.add(btnVolverCrearUsuario);
 	}
 
 }

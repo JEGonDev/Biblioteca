@@ -1,14 +1,10 @@
 package view;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -21,13 +17,14 @@ public class PrestamoView extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textCodigoEliminarPrestamo;
+	public JTextField textCodigoEliminarPrestamo;
 	private JTable table;
 	public JButton btnMostrarPrestamos;
 	public JButton btnCrearNuevoPrestamo;
 	public JButton btnEliminarPrestamo;
 	public JButton btnModificarPrestamo;
 	public DefaultTableModel model;
+	public JButton btnVolverPrestamos;
 
 
 	/**
@@ -90,5 +87,10 @@ public class PrestamoView extends JFrame{
 		table.setModel(model);
 	
 		scrollPane.setViewportView(table);
+		
+		btnVolverPrestamos = new JButton("ATRAS");
+		btnVolverPrestamos.setBackground(Color.GREEN);
+		btnVolverPrestamos.setBounds(10, 6, 89, 23);
+		contentPane.add(btnVolverPrestamos);
 	}
 }

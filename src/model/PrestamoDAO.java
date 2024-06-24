@@ -34,13 +34,13 @@ public class PrestamoDAO extends DatabaseConnection{
     		
     		sentencia.close();
     	} catch (SQLException e) {
-    		JOptionPane.showMessageDialog(null, "No se pudo crear el prestamo: " + e.getMessage());
+    		e.printStackTrace();
     	} finally {
     		closeConnection();
     	}
     }
     
-    public void LeerPrestamo (Prestamo prestamo, DefaultTableModel modelo) {
+    public void LeerPrestamo (DefaultTableModel modelo) {
     	
     	try {
         	this.conexion = getConnection();
@@ -98,7 +98,7 @@ public class PrestamoDAO extends DatabaseConnection{
     		
     		sentencia.close();
     	} catch (SQLException e) {
-    		JOptionPane.showMessageDialog(null,"No se pudo actualizar el prestamo: " +e.getMessage());
+    		e.printStackTrace();
     	} finally {
     		closeConnection();
     	}
@@ -130,32 +130,27 @@ public class PrestamoDAO extends DatabaseConnection{
     // y luego modificar ese mismo libro en una nueva ventana
      
      public void TraerContenidoPrestamo (Prestamo prestamo){
-     	try {
+    	 try {
              this.conexion = getConnection();
-             String sql = "SELECT * FROM prestamos WHERE id = ?";
-             
+             String sql = "SELECT * FROM prestamos WHERE id=?";
              PreparedStatement sentencia = conexion.prepareStatement(sql);
              sentencia.setInt(1, prestamo.getId());
              ResultSet resultado = sentencia.executeQuery();
 
              if(resultado.next()) {
-            	 prestamo.setId(Integer.parseInt(resultado.getString("id")));
-            	 prestamo.setLibro_id(Integer.parseInt(resultado.getString("Libro ID")));
-            	 prestamo.setUsuario_id(Integer.parseInt(resultado.getString("Usuario ID")));
-            	 prestamo.setFecha_prestamo(resultado.getString("Fecha prestamo"));
-            	 prestamo.setFecha_devolucion(resultado.getString("Fecha devolucion"));
-            	 
-             }
-             else {
-                 JOptionPane.showMessageDialog(null, "¡no existe un registro con ese id, intentalo de nuevo!");
+                 prestamo.setId(Integer.parseInt(resultado.getString("id")));
+                 prestamo.setUsuario_id(resultado.getInt("usuario_id"));
+                 prestamo.setLibro_id(resultado.getInt("libro_id"));
+                 prestamo.setFecha_prestamo(resultado.getString("fecha_prestamo"));
+                 prestamo.setFecha_devolucion(resultado.getString("fecha_devolucion"));
              }
              // Cierra el statement y result
              sentencia.close();
              resultado.close();
 
          } catch (SQLException e) {
-             JOptionPane.showMessageDialog(null,
-                     "Ha ocurrido un problema al intentar mostrar los registros: " + e.getMessage());
+             e.printStackTrace();
+
          } finally {
              closeConnection();
          }

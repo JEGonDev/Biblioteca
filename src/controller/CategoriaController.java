@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import model.Categoria;
 import model.CategoriaDAO;
+import view.BibliotecaView;
 import view.CategoriaView;
 import view.CrearCategoriaView;
 import view.ModificarCategoriaView;
@@ -16,12 +17,14 @@ public class CategoriaController implements ActionListener {
 	private ModificarCategoriaView modificar;
 	private CrearCategoriaView crear;
 	private Categoria categoria = new Categoria();
+	private BibliotecaView biblioteca = new BibliotecaView();
 
-    public CategoriaController(CategoriaDAO modelo, CategoriaView vista, ModificarCategoriaView modificar, CrearCategoriaView crear) {
+    public CategoriaController(CategoriaDAO modelo, CategoriaView vista, ModificarCategoriaView modificar, CrearCategoriaView crear, BibliotecaView biblioteca) {
     	this.modelo = modelo;
     	this.vista = vista;
     	this.modificar = modificar;
     	this.crear = crear;
+    	this.biblioteca = biblioteca;
     	
     	//ventanas centrada y de tamaño fijo
     	vista.setLocationRelativeTo(null);
@@ -36,6 +39,7 @@ public class CategoriaController implements ActionListener {
     	this.vista.btnEliminarCategoria.addActionListener(this);
     	this.vista.btnModificarCategoria.addActionListener(this);
     	this.vista.btnMostrarCategoria.addActionListener(this);
+    	this.vista.btnVolverCategoria.addActionListener(this);
     	
     	//listeners botones vista creacion
     	this.crear.btnGuardarNombreCategoria.addActionListener(this);
@@ -56,6 +60,12 @@ public class CategoriaController implements ActionListener {
 		//Carga la tabla categorias de la base de datos
 		if (e.getSource() == vista.btnMostrarCategoria) {
 			modelo.mostrarCategoria(vista.modelo);
+		}
+		
+		//volver ventana principal
+		if (e.getSource() == vista.btnVolverCategoria) {
+			biblioteca.setVisible(true);
+			vista.setVisible(false);
 		}
 		
 		//Abre la ventana vista crear

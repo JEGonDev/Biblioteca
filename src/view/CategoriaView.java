@@ -12,8 +12,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import controller.CategoriaController;
-
 public class CategoriaView extends JFrame{
 
 	private static final long serialVersionUID = 1L;
@@ -25,6 +23,7 @@ public class CategoriaView extends JFrame{
 	public JButton btnCrearCategoria;
 	public JButton btnEliminarCategoria;
 	public JButton btnModificarCategoria;
+	public JButton btnVolverCategoria;
 
 	/**
 	 * Create the frame.
@@ -84,6 +83,11 @@ public class CategoriaView extends JFrame{
 		modelo.addColumn("Nombre");
 	
 		scrollPane.setViewportView(table);
+		
+		btnVolverCategoria = new JButton("VOLVER");
+		btnVolverCategoria.setBackground(Color.GREEN);
+		btnVolverCategoria.setBounds(10, 11, 89, 23);
+		contentPane.add(btnVolverCategoria);
 	}
 
 }
